@@ -3,7 +3,7 @@
 #include<time.h>
 
 
-struct Node 
+struct Node // Creating Node
 {
     int data;
     struct Node *next;
@@ -11,7 +11,7 @@ struct Node
 };
 typedef struct Node *node;
 node newnode,temp,head=NULL;
-node getnode(int k)
+node getnode(int k) //Creating Newnode
 {
     newnode=(node)malloc(sizeof(node));
     if(newnode==NULL)
@@ -23,7 +23,7 @@ node getnode(int k)
     return newnode;
 
 }
-node insert_end(node newnode,int k)
+node insert_end(node newnode,int k) // inserting newnode at the End of the head
 {
     newnode=getnode(k);
 
@@ -36,7 +36,7 @@ node insert_end(node newnode,int k)
     
 
         temp=head;
-        while(temp->next!=NULL)
+        while(temp->next!=NULL) 
         {
             temp=temp->next;
         }
@@ -45,7 +45,7 @@ node insert_end(node newnode,int k)
     }
     
 }
-void display(node head)
+void display(node head) // display the linked List
 {
     if(head==NULL)
     {
@@ -64,7 +64,7 @@ void display(node head)
 
 }
 
-node sort(node head, int n)
+node sort(node head, int n) // Sorting the linked list
 {
     int m;
     node cur,nex;
@@ -98,7 +98,7 @@ int main()
     int n;
     fscanf(fileptr,"%d",&n);
     printf("%d",n);
-    for(int i=0;i<n;i++)
+    for(int i=0;i<n;i++) // reading the elements from the input file
     {
         printf("d");
         fscanf(fileptr,"%d",&ar[i]);
@@ -110,17 +110,19 @@ int main()
     clock_t t;
     t=clock();
     head=sort(head,n);
-    /* while(1)
-    {
-        if(getchar())
-            break;
-    } */
+    
     t=clock()-t;
     double time_taken=((double)t)/CLOCKS_PER_SEC;
     
     printf("\n");
     display(head);
-    printf("\nTime Taken %f",time_taken);
+    printf("\nTime Taken %f",time_taken); // displaying time taken
+	
+	fileptr3=fopen("log.txt","a"); // storing values in the log.txt file
+
+    fprintf(fileptr3,"\n%d  %f",n,time_taken);
+
+    fclose(fileptr3);
 
     
 
